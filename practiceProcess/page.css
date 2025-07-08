@@ -1,0 +1,196 @@
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+ }
+
+ * {
+     margin: 0;
+     width: 100%;
+     height: 100%;
+ }
+
+ body {
+     background-color: red;
+     width: 100%;
+     height: 100%;
+
+ }
+
+ header {
+     margin: 0%;
+     width: 100%;
+     height: 5%;
+     background-color: white;
+     border-bottom: 2px solid gray;
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+ }
+
+ header p {
+     text-align: center;
+ }
+
+ #logo {
+     width: 15%;
+     height: 100%;
+     background-color: orange;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ nav {
+     width: 50%;
+     height: 100%;
+     background-color: green;
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+     color: white;
+ }
+
+ #dropdown {
+     width: 15%;
+     height: 100%;
+     background-color: darkblue;
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ main {
+     width: 100%;
+     height: 90%;
+     background-color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ #expenses-container {
+     width: 80%;
+     height: 80%;
+     border: solid 2px black;
+     border-radius: 5%;
+     display: flex;
+     flex-direction: column;
+ }
+
+ #types {
+     width: 100%;
+     height: 5%;
+     display: flex;
+ }
+
+ #types div {
+     display: flex;
+ }
+
+ #diagram {
+     width: 100%;
+     height: 95%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ #chart {
+     width: 75%;
+     height: 85%;
+     border-left: solid 1px black;
+     border-bottom: solid 1px black;
+ }
+
+ .chart-background {
+     width: 60%;
+     height: 57.5%;
+     position: absolute;
+ }
+
+ .percentage-line {
+     width: 100%;
+     height: 10%;
+     border: 1px dashed gray;
+ }
+
+ .percentage-line p {
+     position: absolute;
+     left: -5;
+     width: 0%;
+     height: 1%;
+ }
+
+ #content {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ #expenses {
+     z-index: 999;
+     height: 100%;
+     width: 100%;
+     border: solid 2px black;
+     display: flex;
+     flex-direction: row;
+     align-items: end;
+     justify-content: space-evenly;
+ }
+
+ #expenses div {
+     width: 10%;
+ }
+
+ #expenses div:hover {
+     opacity: 0.5;
+ }
+
+ #rent {
+     height: 35%;
+     background-color: red;
+ }
+
+ #groceries {
+     height: 25%;
+     background-color: rgb(63, 136, 101);
+ }
+
+ #healthcare {
+     height: 15%;
+     background-color: rgb(68, 96, 169);
+ }
+
+ #bike {
+     height: 5%;
+     background-color: rgb(136, 63, 119);
+ }
+
+ #phone {
+     height: 5%;
+     background-color: rgb(136, 133, 63);
+ }
+
+ #vacation {
+     height: 25%;
+     background-color: rgb(255, 190, 40);
+ }
+
+ footer {
+     width: 100%;
+     margin: 0%;
+     height: 5%;
+     background-color: white;
+     border-top: 2px solid black;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+ }
+
+ footer a {
+     text-align: center;
+ }

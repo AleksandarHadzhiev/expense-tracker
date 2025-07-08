@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="page.css">
+    <title>Expense Tracker</title>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <p>Logo here</p>
+        </div>
+        <nav>
+            <p>Home</p>
+            <p>Settings</p>
+            <p>About me</p>
+        </nav>
+        <div id="dropdown">
+            <p>Logout</p>
+        </div>
+    </header>
+    <main>
+        <div id="expenses-container">
+            <div id="types">
+                <div>
+                    <input type="radio" id="daily" name="daily" value="daily" />
+                    <label for="daily">Daily</label>
+                </div>
+                <div>
+                    <input type="radio" id="weekly" name="weekly" value="weekly" />
+                    <label for="weekly">Weekly</label>
+                </div>
+                <div>
+                    <input type="radio" id="monthly" name="monthly" value="monthly" />
+                    <label for="monthly">Monthly</label>
+                </div>
+                <div>
+                    <input type="radio" id="yearly" name="yearly" value="yearly" />
+                    <label for="yearly">Yearly</label>
+                </div>
+            </div>
+            <div id="diagram">
+                <div id="chart">
+                    <div class="chart-background">
+                        <div class="percentage-line">
+                            <p>100%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>90%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>80%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>70%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>60%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>50%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>40%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>30%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>20%</p>
+                        </div>
+                        <div class="percentage-line">
+                            <p>10%</p>
+                        </div>
+                    </div>
+                    <div id="content">
+                        <div id="expenses">
+                            <div id="rent"></div>
+                            <div id="groceries"></div>
+                            <div id="healthcare"></div>
+                            <div id="bike"></div>
+                            <div id="phone"></div>
+                            <div id="vacation"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a href="">GitHub</a>
+        <a href="">LinkedIn</a>
+    </footer>
+</body>
+
+</html>
