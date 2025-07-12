@@ -17,6 +17,9 @@ const data = [
     { label: "Driving license", value: 5, color: "blue", type: "Single", sum: 150, currentRotation: 342, previousElement: "Medical", nextElement: "Water" },
 ];
 
+let previousX = 0
+let previousY = 0
+
 function updatePrevAndNextForElementBeforePrevious(previousElement) {
     const elementBeforePreviousElement = slices.get(previousElement.previousElement)
     const nextElement = slices.get(previousElement.nextElement)
@@ -274,7 +277,7 @@ function changeVisual(draggedSlice) {
 function getDistanceBetweenCurrentAndNext(draggedSlice) {
 
     draggedSlice = changeVisual(draggedSlice)
-    draggedSlice.angleOffset += draggedSlice.angle / 250
+    draggedSlice.angleOffset += draggedSlice.angle / 100
     const x1 = 150 + radius * Math.cos(draggedSlice.angleOffset);
     const y1 = 150 + radius * Math.sin(draggedSlice.angleOffset);
     const x2 = 150 + radius * Math.cos(draggedSlice.angleOffset + draggedSlice.angle);
@@ -298,7 +301,7 @@ function getDistanceBetweenCurrentAndNext(draggedSlice) {
 
 function getDistanceBetweenCurrentAndPrevious(draggedSlice) {
     changeVisual(draggedSlice)
-    draggedSlice.angleOffset -= draggedSlice.angle / 250
+    draggedSlice.angleOffset -= draggedSlice.angle / 100
     const x1 = 150 + radius * Math.cos(draggedSlice.angleOffset);
     const y1 = 150 + radius * Math.sin(draggedSlice.angleOffset);
     const x2 = 150 + radius * Math.cos(draggedSlice.angleOffset + draggedSlice.angle);
@@ -320,75 +323,83 @@ function getDistanceBetweenCurrentAndPrevious(draggedSlice) {
     return newSlice
 }
 
-function handleUpperRightSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement) {
-    if (evt.offsetX > dragStartX && evt.offsetY > dragStartY) {
+function handleUpperRightSection(evt, draggedSlice, nextElement, previousElement) {
+    if (evt.offsetX > previousX && evt.offsetY > previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX > dragStartX && evt.offsetY == dragStartY) {
+    else if (evt.offsetX > previousX && evt.offsetY == previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX == dragStartX && evt.offsetY > dragStartY) {
+    else if (evt.offsetX == previousX && evt.offsetY > previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY > dragStartY) { } // Do nothing
-    else if (evt.offsetX > dragStartX && evt.offsetY < dragStartY) { } // Do nothing
+    else if (evt.offsetX < previousX && evt.offsetY > previousY) { } // Do nothing
+    else if (evt.offsetX > previousX && evt.offsetY < previousY) { } // Do nothing
     else {
         draggedSlice = getDistanceBetweenCurrentAndPrevious(draggedSlice, previousElement)
     }
+    previousX = evt.offsetX
+    previousY = evt.offsetY
     return draggedSlice
 }
 
-function handleUpperLeftSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement) {
-    if (evt.offsetX > dragStartX && evt.offsetY < dragStartY) {
+function handleUpperLeftSection(evt, draggedSlice, nextElement, previousElement) {
+    if (evt.offsetX > previousX && evt.offsetY < previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX == dragStartX && evt.offsetY < dragStartY) {
+    else if (evt.offsetX == previousX && evt.offsetY < previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX > dragStartX && evt.offsetY == dragStartY) {
+    else if (evt.offsetX > previousX && evt.offsetY == previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY < dragStartY) { } // Do nothing
-    else if (evt.offsetX > dragStartX && evt.offsetY > dragStartY) { } // DO nothing
+    else if (evt.offsetX < previousX && evt.offsetY < previousY) { } // Do nothing
+    else if (evt.offsetX > previousX && evt.offsetY > previousY) { } // DO nothing
     else {
         draggedSlice = getDistanceBetweenCurrentAndPrevious(draggedSlice, previousElement)
     }
+    previousX = evt.offsetX
+    previousY = evt.offsetY
     return draggedSlice
 }
 
-function handleLowerRightSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement) {
-    if (evt.offsetX < dragStartX && evt.offsetY > dragStartY) {
+function handleLowerRightSection(evt, draggedSlice, nextElement, previousElement) {
+    if (evt.offsetX < previousX && evt.offsetY > previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY == dragStartY) {
+    else if (evt.offsetX < previousX && evt.offsetY == previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX == dragStartX && evt.offsetY > dragStartY) {
+    else if (evt.offsetX == previousX && evt.offsetY > previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY < dragStartY) { } // Do nothing
-    else if (evt.offsetX > dragStartX && evt.offsetY > dragStartY) { } // Do nothing
+    else if (evt.offsetX < previousX && evt.offsetY < previousY) { } // Do nothing
+    else if (evt.offsetX > previousX && evt.offsetY > previousY) { } // Do nothing
     else {
         draggedSlice = getDistanceBetweenCurrentAndPrevious(draggedSlice, previousElement)
     }
+    previousX = evt.offsetX
+    previousY = evt.offsetY
     return draggedSlice
 }
 
-function handleLowerLeftSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement) {
-    if (evt.offsetX < dragStartX && evt.offsetY < dragStartY) {
+function handleLowerLeftSection(evt, draggedSlice, nextElement, previousElement) {
+    if (evt.offsetX < previousX && evt.offsetY < previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX == dragStartX && evt.offsetY < dragStartY) {
+    else if (evt.offsetX == previousX && evt.offsetY < previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY == dragStartY) {
+    else if (evt.offsetX < previousX && evt.offsetY == previousY) {
         draggedSlice = getDistanceBetweenCurrentAndNext(draggedSlice, nextElement)
     }
-    else if (evt.offsetX < dragStartX && evt.offsetY > dragStartY) { } // Do nothing
-    else if (evt.offsetX > dragStartX && evt.offsetY < dragStartY) { } // DO nothing
+    else if (evt.offsetX < previousX && evt.offsetY > previousY) { } // Do nothing
+    else if (evt.offsetX > previousX && evt.offsetY < previousY) { } // DO nothing
     else {
         draggedSlice = getDistanceBetweenCurrentAndPrevious(draggedSlice, previousElement)
     }
+    previousX = evt.offsetX
+    previousY = evt.offsetY
     return draggedSlice
 }
 
@@ -399,17 +410,18 @@ function drag(evt) {
         const nextElement = slices.get(draggedSlice.nextElement)
         const element = document.getElementById(evt.target.id)
         if (!isDragging) return;
+        console.log(evt.offsetX, evt.offsetY)
         if (evt.offsetX > 150 && evt.offsetY < 150) {
-            draggedSlice = handleUpperRightSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement)
+            draggedSlice = handleUpperRightSection(evt, draggedSlice, nextElement, previousElement)
         }
-        if (evt.offsetX < 150 && evt.offsetY < 150) {
-            draggedSlice = handleUpperLeftSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement)
+        else if (evt.offsetX < 150 && evt.offsetY < 150) {
+            draggedSlice = handleUpperLeftSection(evt, draggedSlice, nextElement, previousElement)
         }
-        if (evt.offsetX > 150 && evt.offsetY > 150) {
-            draggedSlice = handleLowerRightSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement)
+        else if (evt.offsetX > 150 && evt.offsetY > 150) {
+            draggedSlice = handleLowerRightSection(evt, draggedSlice, nextElement, previousElement)
         }
-        if (evt.offsetX < 150 && evt.offsetY > 150) {
-            draggedSlice = handleLowerLeftSection(evt, dragStartX, dragStartY, draggedSlice, nextElement, previousElement)
+        else if (evt.offsetX < 150 && evt.offsetY > 150) {
+            draggedSlice = handleLowerLeftSection(evt, draggedSlice, nextElement, previousElement)
         }
 
         slices.delete(evt.target.id)
@@ -469,6 +481,7 @@ let total = data.reduce((sum, item) => sum + item.value, 0);
 let angleOffset = 0;
 
 data.forEach((slice) => {
+
     const angle = (slice.value / total) * 2 * Math.PI;
     const x1 = 150 + radius * Math.cos(angleOffset);
     const y1 = 150 + radius * Math.sin(angleOffset);
